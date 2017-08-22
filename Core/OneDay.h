@@ -18,6 +18,8 @@ namespace DiaryCore
 		~OneDay();
 
 		void AppendContent(const std::string val);
+		Date GetDate() const { return _date; }
+		std::string GetContent() const { return _content; }
 	};
 }
 
