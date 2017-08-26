@@ -8,7 +8,7 @@ namespace DiaryCore
 
 	}
 
-	Byte::Byte(char val):_byte(val)
+	Byte::Byte(byte val):_byte(val)
 	{
 
 	}
@@ -21,5 +21,14 @@ namespace DiaryCore
 	{
 		out << _byte;
 	}
+
+	Byte Byte::Read(std::ifstream& in)
+	{
+		byte ch;
+		in >> ch;
+
+		return Byte(ch);
+	}
+
 }
 
