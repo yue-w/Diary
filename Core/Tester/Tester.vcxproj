@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Middleware\gtest\src\gtest-all.cc" />
+    <ClCompile Include="MyMain.cpp" />
     <ClCompile Include="Tester.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
