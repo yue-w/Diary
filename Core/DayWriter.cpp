@@ -18,11 +18,15 @@ namespace DiaryCore
 
 	void DayWriter::Write(const OneDay& oneDay)
 	{
+		this->WriteDayStartTag();
+
 		this->Write(oneDay.GetDate());
 
 		this->WriteContent(oneDay.GetContent());
 
-		_out << endl;
+		this->WriteDayEndTag();
+
+		_out.flush();
 	}
 
 	void DayWriter::Write(const Date& date)
@@ -35,9 +39,21 @@ namespace DiaryCore
 		{
 			b.Write(_out);
 		}
+
+		if (monthBytes.size() == 1)
+		{
+			Byte zero(0);
+			zero.Write(_out);
+		}
 		for (auto b : monthBytes)
 		{
 			b.Write(_out);
+		}
+
+		if (dayBytes.size() == 1)
+		{
+			Byte zero(0);
+			zero.Write(_out);
 		}
 		for (auto b : dayBytes)
 		{
@@ -54,17 +70,35 @@ namespace DiaryCore
 		}
 	}
 
+	void DayWriter::WriteDayStartTag()
+	{
+		for (int i = 0; i < 5; ++i)
+		{
+			Byte tag(DAY_START[i]);
+			tag.Write(_out);
+		}
+	}
+
+	void DayWriter::WriteDayEndTag()
+	{
+		for (int i = 0; i < 5; ++i)
+		{
+			Byte tag(DAY_END[i]);
+			tag.Write(_out);
+		}
+	}
+
 	std::vector<Byte> DayWriter::CreateArray(const int val) const
 	{
 		//Split val to digits.
 		vector<int> digits;
 
-		int remain;
+		int remain = val;
 		int divider = 10;
 		do
 		{
-			int mod = val%divider;
-			remain = (int)val / divider;
+			int mod = remain%divider;
+			remain = (int)remain / divider;
 			digits.push_back(mod);
 
 		} while (remain != 0);

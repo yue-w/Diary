@@ -1,4 +1,5 @@
 #pragma once
+#include "InOut.h"
 #include <fstream>
 #include <string>
 #include <vector>
@@ -9,7 +10,10 @@ namespace DiaryCore
 	class OneDay;
 	class Byte;
 
-	class DayWriter
+	//////////////////////////////////////////////////////////////////////////
+	//Reader from Diary to a file stream.
+	//////////////////////////////////////////////////////////////////////////
+	class _DIARY_CORE_API DayWriter
 	{
 		std::ofstream& _out;
 	public:
@@ -21,6 +25,8 @@ namespace DiaryCore
 	private:
 		void Write(const Date& date);
 		void WriteContent(const std::string& content);
+		void WriteDayStartTag();
+		void WriteDayEndTag();
 
 	private:
 
