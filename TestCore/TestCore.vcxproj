@@ -157,11 +157,6 @@
     </ClCompile>
     <ClCompile Include="TestCore.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.vcxproj">
-      <Project>{b0990010-b804-4aaf-99a2-f2c0ad665dc1}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
